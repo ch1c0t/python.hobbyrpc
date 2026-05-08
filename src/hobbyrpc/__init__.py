@@ -1,2 +1,1 @@
-def main() -> None:
-    print("Hello from hobbyrpc!")
+from .client import Client
