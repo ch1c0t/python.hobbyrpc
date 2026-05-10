@@ -25,4 +25,5 @@ def tcp_server(xprocess):
     # Start the process
     xprocess.ensure("tcp_server", Starter)
     yield
-    # Cleanup is handled by xprocess
+
+    xprocess.getinfo("tcp_server").terminate()
