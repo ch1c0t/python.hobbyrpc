@@ -24,6 +24,8 @@ def tcp_server(xprocess):
 
     # Start the process
     xprocess.ensure("tcp_server", Starter)
-    yield
 
-    xprocess.getinfo("tcp_server").terminate()
+    process = xprocess.getinfo("tcp_server")
+    yield process
+
+    process.terminate()
