@@ -1,6 +1,6 @@
 from hobbyrpc import Client
 
-def test_nullary_call(tcp_server):
+def test_nullary_call(coffeerpc_server):
     call = Client(
         address='http://127.0.0.1:8080',
     )

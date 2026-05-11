@@ -7,7 +7,7 @@ from xprocess import ProcessStarter
 coffeerpc_path = f'{Path.home()}/sources/coffee/coffee.rpc/bin/coffee.rpc'
 
 @pytest.fixture
-def tcp_server(xprocess):
+def coffeerpc_server(xprocess):
     class Starter(ProcessStarter):
         # The command to start your process
         args = [coffeerpc_path, ]
@@ -23,9 +23,9 @@ def tcp_server(xprocess):
         pattern = "Listening on"
 
     # Start the process
-    xprocess.ensure("tcp_server", Starter)
+    xprocess.ensure("coffeerpc_server", Starter)
 
-    process = xprocess.getinfo("tcp_server")
+    process = xprocess.getinfo("coffeerpc_server")
     yield process
 
     process.terminate()
