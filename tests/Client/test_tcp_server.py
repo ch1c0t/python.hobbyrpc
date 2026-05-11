@@ -11,7 +11,7 @@ def test_its_response(tcp_server):
     header = response.getheader('Access-Control-Allow-Headers')
     assert header == 'Authorization, Content-Type'
 
-from pprint import pprint as p
-def test_its_info(tcp_server):
-    p(dir(tcp_server))
-    p(vars(tcp_server))
+# from pprint import pprint as p
+# def test_its_info(tcp_server):
+#     p(dir(tcp_server))
+#     p(vars(tcp_server))
