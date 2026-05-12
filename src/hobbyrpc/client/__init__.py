@@ -3,7 +3,7 @@ from http.client import HTTPConnection
 from .unix import UnixSocketConnection
 
 class Client:
-    def __init__(self, address):
+    def __init__(self, address, token=None):
         if address.startswith('/'):
             self.http = UnixSocketConnection(address)
             self.http_path = '/'
@@ -17,6 +17,9 @@ class Client:
         self.headers = {
             'Content-type': 'application/json',
         }
+
+        if token:
+            self.headers['Authorization'] = token
 
 from .call import call
 Client.__call__ = call
