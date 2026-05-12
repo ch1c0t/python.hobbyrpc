@@ -1,5 +1,5 @@
 import json
-from .exceptions import Forbidden
+from .exceptions import BadRequest, Forbidden, UnexpectedStatus
 
 def call(self, name, **input):
     body = {
@@ -22,5 +22,9 @@ def call(self, name, **input):
         case 200:
             data = json.loads(raw_data.decode('utf-8'))
             return data
+        case 400:
+            raise BadRequest
         case 403:
             raise Forbidden
+        case _:
+            raise UnexpectedStatus(f'{response.status} in response {response}')
