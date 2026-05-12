@@ -1,6 +1,8 @@
 from urllib.parse import urlparse
-from http.client import HTTPConnection
+from http.client import HTTPConnection, HTTPSConnection
+
 from .unix import UnixSocketConnection
+from .exceptions import NotImplementedScheme
 
 class Client:
     def __init__(self, address, token=None):
@@ -11,8 +13,13 @@ class Client:
             url = urlparse(address)
             match url.scheme:
                 case 'http':
-                    self.http = HTTPConnection(url.hostname, url.port)
-                    self.http_path = url.path
+                    Connection = HTTPConnection
+                case 'https':
+                    Connection = HTTPSConnection
+                case _:
+                    raise NotImplementedScheme(f'#{url.scheme} of #{url}')
+            self.http = Connection(url.hostname, url.port)
+            self.http_path = url.path
 
         self.headers = {
             'Content-type': 'application/json',

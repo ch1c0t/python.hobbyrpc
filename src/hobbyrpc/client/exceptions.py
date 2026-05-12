@@ -6,3 +6,6 @@ class Forbidden(Exception):
 
 class UnexpectedStatus(Exception):
     pass
+
+class NotImplementedScheme(Exception):
+    pass
