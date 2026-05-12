@@ -1,9 +1,12 @@
 import json
 
-def call(self, name):
+def call(self, name, **input):
     body = {
         'fn': name,
     }
+
+    if input:
+        body['in'] = input
 
     self.http.request(
         'POST', self.http_path,
