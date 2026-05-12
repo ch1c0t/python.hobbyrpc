@@ -4,7 +4,8 @@ from pathlib import Path
 import pytest
 from xprocess import ProcessStarter
 
-coffeerpc_path = f'{Path.home()}/sources/coffee/coffee.rpc/bin/coffee.rpc'
+from tests.helpers.coffeerpc import coffeerpc_path
+cli = coffeerpc_path / 'bin/coffee.rpc'
 
 @pytest.fixture(
     params=['tcp', 'unix_socket'],
@@ -25,7 +26,7 @@ def coffeerpc_server_with_auth(xprocess, request, tmp_path_factory):
 
     class Starter(ProcessStarter):
         # The command to start your process
-        args = [coffeerpc_path, ]
+        args = [cli, ]
         
         match request.param:
             case 'tcp':
