@@ -1,7 +1,7 @@
 import pytest
 
 pytest_plugins = [
-    "tests.fixtures.coffeerpc_server",
+    "tests.Client.fixtures.coffeerpc_server",
 ]
 
 @pytest.fixture(scope="session", autouse=True)
