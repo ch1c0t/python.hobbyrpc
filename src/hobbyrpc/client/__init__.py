@@ -1,4 +1,3 @@
-import json
 from urllib.parse import urlparse
 from http.client import HTTPConnection
 from .unix import UnixSocketConnection
@@ -19,21 +18,5 @@ class Client:
             'Content-type': 'application/json',
         }
 
-    def __call__(self, name):
-        body = {
-            'fn': name,
-        }
-
-        self.http.request(
-            'POST', self.http_path,
-            body=json.dumps(body),
-            headers=self.headers,
-        )
-
-        response = self.http.getresponse()
-        raw_data = response.read()
-
-        match response.status:
-            case 200:
-                data = json.loads(raw_data.decode('utf-8'))
-                return data
+from .call import call
+Client.__call__ = call
