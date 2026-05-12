@@ -1,4 +1,5 @@
 import json
+from .exceptions import Forbidden
 
 def call(self, name, **input):
     body = {
@@ -21,3 +22,5 @@ def call(self, name, **input):
         case 200:
             data = json.loads(raw_data.decode('utf-8'))
             return data
+        case 403:
+            raise Forbidden
