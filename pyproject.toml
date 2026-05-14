@@ -7,7 +7,9 @@ authors = [
     { name = "Anatoly Chernov", email = "chertoly@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "werkzeug>=3.1.8",
+]
 
 [project.scripts]
 hobbyrpc = "hobbyrpc:main"
