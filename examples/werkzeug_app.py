@@ -14,7 +14,7 @@ class BadRequest(Exception):
     pass
 
 @Request.application
-def application(request):
+def rpc(request):
     try:
         match request.method:
             case 'POST':
