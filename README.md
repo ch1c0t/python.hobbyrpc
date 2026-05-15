@@ -8,7 +8,7 @@ To install:
 pip install hobbyrpc
 ```
 
-## Clients
+## Client
 
 A usage example:
 
@@ -40,7 +40,7 @@ output = call(
 
 `input` and `output` are Python objects serializable to and deserializable from JSON.
 
-## Servers
+## Server
 
 Not implemented yet.
 
