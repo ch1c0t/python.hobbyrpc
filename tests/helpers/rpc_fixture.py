@@ -1,12 +1,10 @@
-from functools import wraps
 from pathlib import Path
+
+import pytest
 from xprocess import ProcessStarter
 
-def rpc_fixture(fn):
-    name = fn.__name__
-
-    @wraps(fn)
-    def wrapped(xprocess, request, tmp_path_factory):
+def rpc_fixture(name):
+    def fn(xprocess, request, tmp_path_factory):
         match request.param:
             case 'tcp':
                 address = 'http://127.0.0.1:8000'
@@ -43,4 +41,10 @@ def rpc_fixture(fn):
 
         process.terminate()
 
-    return wrapped
+    fixture = pytest.fixture(
+        fn,
+        name=name,
+        params=['tcp', 'unix_socket'],
+    )
+
+    return fixture
