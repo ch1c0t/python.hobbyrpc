@@ -13,10 +13,9 @@ logging.basicConfig(
 class BadRequest(Exception):
     pass
 
-def call(self, environ, start_response):
+@Request.application
+def call(self, request):
     try:
-        request = Request(environ)
-
         match request.method:
             case 'POST':
                 data = request.get_json()
@@ -25,7 +24,7 @@ def call(self, environ, start_response):
                 if fn in self.functions:
                     result = self.functions[fn]()
 
-                    response = Response(
+                    return Response(
                         json.dumps(result),
                         mimetype='application/json',
                         status=200,
@@ -35,7 +34,5 @@ def call(self, environ, start_response):
             case _:
                 raise BadRequest
     except Exception as e:
-        logging.exception("An Exception happened while processing the request:")
-        response = Response("400", status=400)
-    finally:
-        return response(environ, start_response)
+        logging.exception(f"An Exception happened while processing the request: {e}")
+        return Response("400", status=400)
