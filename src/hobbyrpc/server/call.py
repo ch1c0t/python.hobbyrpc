@@ -1,14 +1,7 @@
 import json
 from werkzeug.wrappers import Request, Response
 
-import sys
-import logging
-
-logging.basicConfig(
-    stream=sys.stderr,
-    level=logging.ERROR,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+from .logger import logger
 
 class BadRequest(Exception):
     pass
@@ -34,5 +27,5 @@ def call(self, request):
             case _:
                 raise BadRequest
     except Exception as e:
-        logging.exception(f"An Exception happened while processing the request: {e}")
+        logger.exception(f"An Exception happened while processing the request: {e}")
         return Response("400", status=400)
