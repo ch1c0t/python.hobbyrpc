@@ -2,9 +2,7 @@ import json
 from werkzeug.wrappers import Request, Response
 
 from .logger import logger
-
-class BadRequest(Exception):
-    pass
+from .exceptions import BadRequest
 
 @Request.application
 def call(self, request):
