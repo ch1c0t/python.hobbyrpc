@@ -1,7 +1,7 @@
-import json
 from werkzeug.wrappers import Request, Response
 
 from .logger import logger
+from .to_json import to_json
 from .exceptions import BadRequest
 
 @Request.application
@@ -16,7 +16,7 @@ def call(self, request):
                     result = self.functions[fn]()
 
                     return Response(
-                        json.dumps(result),
+                        to_json(result),
                         mimetype='application/json',
                         status=200,
                     )
