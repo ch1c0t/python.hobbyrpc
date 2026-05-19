@@ -1,9 +1,12 @@
+from .fun import change
+
 class Server:
     def __init__(self):
         self.functions = {}
 
     def fun(self, cl):
-        cl.__call__ = cl.call
+        change(cl)
+
         instance = cl()
         self.functions[cl.__name__] = instance
         return instance

@@ -13,7 +13,10 @@ def call(self, request):
                 fn = data['fn']
 
                 if fn in self.functions:
-                    result = self.functions[fn]()
+                    if 'in' in data:
+                        result = self.functions[fn](data['in'])
+                    else:
+                        result = self.functions[fn]()
 
                     return Response(
                         to_json(result),

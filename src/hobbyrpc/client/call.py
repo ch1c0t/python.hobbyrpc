@@ -1,10 +1,17 @@
 import json
 from .exceptions import BadRequest, Forbidden, UnexpectedStatus
 
-def call(self, name, **input):
+def call(self, name, input=None, **kwargs):
     body = {
         'fn': name,
     }
+
+    if input:
+        if kwargs:
+            input = { **input, **kwargs }
+    else:
+        if kwargs:
+            input = kwargs
 
     if input:
         body['in'] = input
