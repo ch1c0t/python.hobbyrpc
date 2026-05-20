@@ -1,6 +1,5 @@
 from werkzeug.wrappers import Request, Response
 
-from .logger import logger
 from .exceptions import BadRequest
 
 @Request.application
@@ -28,5 +27,5 @@ def call(self, request):
             case _:
                 raise BadRequest
     except Exception as e:
-        logger.exception(f"An Exception happened while processing the request: {e}")
+        self.logger.exception(f"An Exception happened while processing the request: {e}")
         return Response("400", status=400)

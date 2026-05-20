@@ -1,8 +1,10 @@
 from .fun import change
+from .logger import logger
 
 class Server:
-    def __init__(self):
+    def __init__(self, logger=logger):
         self.functions = {}
+        self.logger = logger
 
     def fun(self, cl):
         change(cl)
