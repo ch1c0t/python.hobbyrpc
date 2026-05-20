@@ -1,7 +1,6 @@
 from werkzeug.wrappers import Request, Response
 
 from .logger import logger
-from .to_json import to_json
 from .exceptions import BadRequest
 
 @Request.application
@@ -13,13 +12,14 @@ def call(self, request):
                 fn = data['fn']
 
                 if fn in self.functions:
+                    fun = self.functions[fn]
                     if 'in' in data:
-                        result = self.functions[fn](data['in'])
+                        json = fun.json(data['in'])
                     else:
-                        result = self.functions[fn]()
+                        json = fun.json()
 
                     return Response(
-                        to_json(result),
+                        json,
                         mimetype='application/json',
                         status=200,
                     )
