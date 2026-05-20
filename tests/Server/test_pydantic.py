@@ -34,3 +34,16 @@ def test_that_it_raises_an_error_when_a_value_of_a_wrong_type_was_passed(pydanti
             first='first string',
             second=2,
     )
+
+def test_field_accessors(pydantic_rpc):
+    call = Client(
+        address=pydantic_rpc.address,
+    )
+
+    result = call(
+        'FieldAccessors',
+        first='first string',
+        second='second string',
+    )
+
+    assert result == 'first string and second string'
