@@ -1,11 +1,14 @@
-class BadRequest(Exception):
+class Error(Exception):
     pass
 
-class Forbidden(Exception):
+class BadRequest(Error):
     pass
 
-class UnexpectedStatus(Exception):
+class Forbidden(Error):
     pass
 
-class NotImplementedScheme(Exception):
+class UnexpectedStatus(Error):
+    pass
+
+class NotImplementedScheme(Error):
     pass

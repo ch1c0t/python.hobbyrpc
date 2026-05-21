@@ -1,5 +1,9 @@
-class BadRequest(Exception):
-    pass
+class Error(Exception):
+    def status(self):
+        return self.__class__.status
 
-class Forbidden(Exception):
-    pass
+class BadRequest(Error):
+    status = 400
+
+class Forbidden(Error):
+    status = 403

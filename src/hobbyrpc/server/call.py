@@ -1,6 +1,6 @@
 from copy import copy
 from werkzeug.wrappers import Request, Response
-from .exceptions import BadRequest, Forbidden
+from .exceptions import Error, BadRequest, Forbidden
 
 @Request.application
 def call(self, request):
@@ -42,9 +42,9 @@ def call(self, request):
     except Exception as e:
         self.logger.exception(f"An Exception happened while processing the request: {e}")
         match e:
-            case BadRequest():
-                return Response("400", status=400)
-            case Forbidden():
-                return Response("403", status=403)
+            case Error():
+                status = e.status
+                string = str(status)
+                return Response(string, status=status)
             case _:
                 return Response("400", status=400)
