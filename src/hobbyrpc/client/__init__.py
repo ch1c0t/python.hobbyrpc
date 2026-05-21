@@ -22,7 +22,7 @@ class Client:
             self.http_path = url.path
 
         self.headers = {
-            'Content-type': 'application/json',
+            'Content-Type': 'application/json',
         }
 
         if token:

@@ -4,6 +4,10 @@ from .exceptions import BadRequest
 
 class POST:
     def response_to_POST(self, request, user=None):
+        mimetype = request.headers.get('Content-Type', '')
+        if not mimetype.startswith('application/json'):
+            raise BadRequest
+
         data = request.get_json()
         fn = data['fn']
 
