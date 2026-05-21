@@ -17,3 +17,14 @@ class FieldAccessors:
 
     def call(self):
         return f'{self.first} and {self.second}'
+
+from pydantic import BaseModel
+class Response(BaseModel):
+    name: str
+
+@rpc.fun
+class BaseModelResponse:
+    def call(self):
+        return Response(
+            name='A',
+        )

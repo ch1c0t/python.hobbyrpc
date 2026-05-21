@@ -1,10 +1,10 @@
 from json import dumps
+from pydantic import BaseModel
 
 def json(self, input=None):
     output = self(input)
 
-    Model = getattr(self.__class__, 'PydanticModel', None)
-    if Model and isinstance(output, Model):
+    if isinstance(output, BaseModel):
         return output.model_dump_json()
     else:
         return dumps(output)

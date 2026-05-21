@@ -47,3 +47,16 @@ def test_field_accessors(pydantic_rpc):
     )
 
     assert result == 'first string and second string'
+
+def test_BaseModel_json_dump(pydantic_rpc):
+    call = Client(
+        address=pydantic_rpc.address,
+    )
+
+    result = call(
+        'BaseModelResponse',
+    )
+
+    assert result == {
+        'name': 'A',
+    }
