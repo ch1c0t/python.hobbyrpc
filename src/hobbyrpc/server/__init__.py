@@ -6,6 +6,14 @@ class Server:
         self.functions = {}
         self.logger = logger
 
+    def auth(self, fn):
+        self.auth_is_required = True
+        self.find_user = fn
+
+    def is_auth_required(self):
+        if hasattr(self, 'auth_is_required'):
+            return getattr(self, 'auth_is_required')
+
     def fun(self, cl):
         change(cl)
 
