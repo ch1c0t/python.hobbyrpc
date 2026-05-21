@@ -1,4 +1,3 @@
-from copy import copy
 from werkzeug.wrappers import Request, Response
 from .exceptions import Error, BadRequest
 
@@ -9,25 +8,10 @@ def call(self, request):
 
         match request.method:
             case 'POST':
-                data = request.get_json()
-                fn = data['fn']
-
-                if fn in self.functions:
-                    fun = self.functions[fn]
-                    if user:
-                        fun = copy(fun)
-                        fun.user = user
-
-                    input = data.get('in')
-                    json = fun.json(input)
-
-                    return Response(
-                        json,
-                        mimetype='application/json',
-                        status=200,
-                    )
-                else:
-                    raise BadRequest
+                return self.response_to_POST(
+                    request=request,
+                    user=user,
+                )
             case _:
                 raise BadRequest
     except Exception as e:

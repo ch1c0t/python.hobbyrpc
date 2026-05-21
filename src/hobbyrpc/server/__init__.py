@@ -1,8 +1,9 @@
 from .fun import change
 from .auth import Auth
+from .post import POST
 from .logger import logger
 
-class Server(Auth):
+class Server(Auth, POST):
     def __init__(self, logger=logger):
         self.functions = {}
         self.logger = logger
