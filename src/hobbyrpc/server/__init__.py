@@ -1,9 +1,10 @@
 from .fun import change
 from .auth import Auth
 from .post import POST
+from .options import OPTIONS
 from .logger import logger
 
-class Server(Auth, POST):
+class Server(Auth, POST, OPTIONS):
     def __init__(self, logger=logger):
         self.functions = {}
         self.logger = logger

@@ -12,6 +12,8 @@ def call(self, request):
                     request=request,
                     user=user,
                 )
+            case 'OPTIONS':
+                return self.response_to_OPTIONS(request)
             case _:
                 raise BadRequest
     except Exception as e:

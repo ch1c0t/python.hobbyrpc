@@ -24,4 +24,5 @@ dev = [
     "gunicorn>=26.0.0",
     "pytest>=9.0.3",
     "pytest-xprocess>=1.0.2",
+    "requests>=2.34.2",
 ]
