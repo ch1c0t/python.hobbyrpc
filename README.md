@@ -50,5 +50,5 @@ output = call(
 Not implemented yet.
 
 [hobby_rpc]: https://github.com/ch1c0t/hobby-rpc.protocol
-[wergzeug]: https://palletsprojects.com/projects/werkzeug
+[werkzeug]: https://palletsprojects.com/projects/werkzeug
 [pydantic]: https://pydantic.dev/docs/validation/latest/get-started
