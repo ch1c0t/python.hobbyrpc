@@ -5,9 +5,16 @@ from .options import OPTIONS
 from .logger import logger
 
 class Server(Auth, POST, OPTIONS):
-    def __init__(self, logger=logger):
+    def __init__(self, logger=logger, CORS={}):
         self.functions = {}
         self.logger = logger
+
+        default_CORS = {
+            'methods': 'POST, OPTIONS',
+            'headers': 'Authorization, Content-Type',
+            'max_age': '86400',
+        }
+        self.CORS = { **default_CORS, **CORS }
 
     def fun(self, cl):
         change(cl)
