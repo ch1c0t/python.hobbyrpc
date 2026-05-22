@@ -20,10 +20,14 @@ class POST:
             input = data.get('in')
             json = fun.json(input)
 
-            return Response(
+            response = Response(
                 json,
                 mimetype='application/json',
                 status=200,
             )
+
+            response.headers['Access-Control-Allow-Origin'] = '*'
+
+            return response
         else:
             raise BadRequest
