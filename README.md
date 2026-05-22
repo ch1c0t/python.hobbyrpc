@@ -2,10 +2,15 @@
 
 It is a Python package to make [Hobby-RPC][hobby_rpc] clients and servers.
 
+It depends on:
+
+- [Werkzeug][werkzeug]
+- [Pydantic][pydantic]
+
 To install:
 
 ```
-pip install hobbyrpc
+uv add hobbyrpc
 ```
 
 ## Client
@@ -45,3 +50,5 @@ output = call(
 Not implemented yet.
 
 [hobby_rpc]: https://github.com/ch1c0t/hobby-rpc.protocol
+[wergzeug]: https://palletsprojects.com/projects/werkzeug
+[pydantic]: https://pydantic.dev/docs/validation/latest/get-started
