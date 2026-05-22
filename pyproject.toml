@@ -8,6 +8,8 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
+    "hobby-client",
+    "hobbyrpc-client",
     "pydantic>=2.13.4",
     "werkzeug>=3.1.8",
 ]
@@ -26,3 +28,13 @@ dev = [
     "pytest-xprocess>=1.0.2",
     "requests>=2.34.2",
 ]
+
+[tool.uv.workspace]
+members = [
+    "packages/client",
+    "packages/client2",
+]
+
+[tool.uv.sources]
+hobby-client = { workspace = true, editable = true }
+hobbyrpc-client = { workspace = true, editable = true }
