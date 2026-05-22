@@ -2,13 +2,6 @@ version = 1
 revision = 3
 requires-python = ">=3.13"
 
-[manifest]
-members = [
-    "hobby-client",
-    "hobbyrpc",
-    "hobbyrpc-client",
-]
-
 [[package]]
 name = "annotated-types"
 version = "0.7.0"
@@ -106,17 +99,10 @@ wheels = [
 ]
 
 [[package]]
-name = "hobby-client"
-version = "0.1.0"
-source = { editable = "packages/client" }
-
-[[package]]
 name = "hobbyrpc"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "hobby-client" },
-    { name = "hobbyrpc-client" },
     { name = "pydantic" },
     { name = "werkzeug" },
 ]
@@ -131,8 +117,6 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "hobby-client", editable = "packages/client" },
-    { name = "hobbyrpc-client", editable = "packages/client2" },
     { name = "pydantic", specifier = ">=2.13.4" },
     { name = "werkzeug", specifier = ">=3.1.8" },
 ]
@@ -144,11 +128,6 @@ dev = [
     { name = "pytest-xprocess", specifier = ">=1.0.2" },
     { name = "requests", specifier = ">=2.34.2" },
 ]
-
-[[package]]
-name = "hobbyrpc-client"
-version = "0.1.0"
-source = { editable = "packages/client2" }
 
 [[package]]
 name = "idna"
