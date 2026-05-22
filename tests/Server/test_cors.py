@@ -36,3 +36,27 @@ def test_custom_CORS_headers(cors_rpc):
         )
         assert response.status_code == 200
         assert response.json() == ['custom', 'headers']
+
+def test_restricting_CORS_origins(cors_with_restricted_origins_rpc):
+    address = cors_with_restricted_origins_rpc.address
+    if not address.startswith('/'):
+        response = post(
+            address,
+            json={'fn': 'SomeFunction'},
+            headers={
+                'Content-Type': 'application/json',
+                'Origin': 'https://not.allowed.domain',
+            }
+        )
+        assert response.status_code == 400
+
+        response = post(
+            address,
+            json={'fn': 'SomeFunction'},
+            headers={
+                'Content-Type': 'application/json',
+                'Origin': 'https://web.allowed.domain',
+            }
+        )
+        assert response.status_code == 200
+        assert response.json() == ['custom', 'origins']

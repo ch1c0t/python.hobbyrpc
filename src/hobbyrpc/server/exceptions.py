@@ -7,3 +7,9 @@ class BadRequest(Error):
 
 class Forbidden(Error):
     status = 403
+
+class BadOrigin(BadRequest):
+    pass
+
+class BadSetting(Error):
+    status = 400

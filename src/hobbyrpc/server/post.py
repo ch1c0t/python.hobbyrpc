@@ -26,8 +26,6 @@ class POST:
                 status=200,
             )
 
-            response.headers['Access-Control-Allow-Origin'] = '*'
-
             return response
         else:
             raise BadRequest

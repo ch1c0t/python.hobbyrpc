@@ -5,17 +5,22 @@ from .exceptions import Error, BadRequest
 def call(self, request):
     try:
         user = self.current_user(request)
+        origin = self.origin_of(request)
 
         match request.method:
             case 'POST':
-                return self.response_to_POST(
+                response = self.response_to_POST(
                     request=request,
                     user=user,
                 )
             case 'OPTIONS':
-                return self.response_to_OPTIONS(request)
+                response = self.response_to_OPTIONS(request)
             case _:
                 raise BadRequest
+
+        response.headers['Access-Control-Allow-Origin'] = origin
+
+        return response
     except Exception as e:
         self.logger.exception(f"An Exception happened while processing the request: {e}")
         match e:

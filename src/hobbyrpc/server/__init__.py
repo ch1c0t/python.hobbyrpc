@@ -1,10 +1,11 @@
 from .fun import change
 from .auth import Auth
+from .cors import CORS
 from .post import POST
 from .options import OPTIONS
 from .logger import logger
 
-class Server(Auth, POST, OPTIONS):
+class Server(Auth, CORS, POST, OPTIONS):
     def __init__(self, logger=logger, CORS={}):
         self.functions = {}
         self.logger = logger
@@ -13,6 +14,7 @@ class Server(Auth, POST, OPTIONS):
             'methods': 'POST, OPTIONS',
             'headers': 'Authorization, Content-Type',
             'max_age': '86400',
+            'origins': '*',
         }
         self.CORS = { **default_CORS, **CORS }
 
