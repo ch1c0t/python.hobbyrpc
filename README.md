@@ -65,7 +65,7 @@ class Echo:
 #### Validation
 
 In most cases, it is advisable to rely on [Pydantic][pydantic] for validating input
-instead of parsing `self.input` yourself.
+instead of parsing `self.input` by other means.
 
 To do so, input fields shall be passed as class annotations. Like so:
 

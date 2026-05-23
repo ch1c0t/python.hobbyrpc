@@ -1,6 +1,6 @@
 [project]
 name = "hobbyrpc"
-version = "0.1.1"
+version = "0.1.2"
 description = "To make RPC clients and servers with Python"
 readme = "README.md"
 authors = [
